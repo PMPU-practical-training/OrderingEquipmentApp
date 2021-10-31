@@ -6,6 +6,7 @@ from database.__main__ import engine, Base
 
 import database.models.user as user_model
 import database.exceptions.exceptions as database_exceptions
+from globals import *
 
 
 logger = logging.getLogger(__name__)
@@ -39,6 +40,7 @@ class DBHandler:
     def remove_session(self):
         self.db_session.remove()
 
+    @login_manager.user_loader
     def get_user(self, user_id):
         filter_condition = (user_model.User.user_id == user_id)
         user = user_model.User.query.filter(filter_condition).first()
