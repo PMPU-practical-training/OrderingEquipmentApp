@@ -11,8 +11,8 @@ class Product(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(Text, nullable=False, unique=True)
-    verified_by = Column(Text, nullable=False)
-    requires_verefication = Column(Boolean)
+    verified_by = Column(Text)
+    requires_verification = Column(Boolean)
     price = Column(Float, nullable=True)
 
     def __repr__(self):
