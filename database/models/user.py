@@ -1,6 +1,6 @@
 from werkzeug.security import generate_password_hash,  check_password_hash
 from flask_login import UserMixin
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, Text
 from database.__main__ import Base
 
 
@@ -12,10 +12,10 @@ class User(Base, UserMixin):
     __tablename__ = "users"
 
     user_id = Column(Integer, primary_key=True)
-    passw = Column(String, nullable=False)
-    user_id = Column(Integer, primary_key=True)
-    username = Column(String, nullable=False, unique=True)
-    role = Column(String, nullable=False)
+    name = Column(Text, default=None)
+    username = Column(Text, nullable=False, unique=True)
+    role = Column(Text, nullable=False)
+    password_hash = Column(Text, nullable=False)
 
 
     def set_password(self, passw):
