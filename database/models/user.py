@@ -15,7 +15,7 @@ class User(Base, UserMixin):
     name = Column(Text, default=None)
     username = Column(Text, nullable=False, unique=True)
     role = Column(Text, nullable=False)
-    password_hash = Column(Text, nullable=False)
+    password_hash = Column(Text, default=None)
 
 
     def set_password(self, passw):
