@@ -1,10 +1,8 @@
-from werkzeug.security import generate_password_hash,  check_password_hash
-from flask_login import UserMixin
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, false, String
 from database.__main__ import Base
 
 
-class User(Base, UserMixin):
+class User(Base):
     """
     Пользователи
     """
@@ -12,20 +10,11 @@ class User(Base, UserMixin):
     __tablename__ = "users"
 
     user_id = Column(Integer, primary_key=True)
-    passw = Column(String, nullable=False)
-    user_id = Column(Integer, primary_key=True)
-    username = Column(String, nullable=False, unique=True)
-    role = Column(String, nullable=False)
-
-
-    def set_password(self, passw):
-        self.password_hash = generate_password_hash(passw)
-
-    def check_password(self, passw):
-        return check_password_hash(self.password_hash, passw)
-
-    def get_id(self):
-        return self.user_id
+    username = Column(String,nullable=false)
+    passw = Column(String,nullable=false)
+    name = Column(String,nullable=false)
+    role = Column(String,nullable=false)
 
     def __repr__(self):
-        return "{}: {}".format(self.__name__, ', '.join(['{}={}'.format(key, value) for key, value in self.__dict__ if not key.startswith('__')]))
+        return "{}: {}".format(self.__name__, ', '.join(
+            ['{}={}'.format(key, value) for key, value in self.__dict__ if not key.startswith('__')]))
