@@ -13,4 +13,5 @@ def init_db():
     """
 
     from database.models import user
+    from database.models import product
     Base.metadata.create_all(bind=engine)
