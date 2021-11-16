@@ -2,7 +2,7 @@ from werkzeug.security import generate_password_hash,  check_password_hash
 from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String
 from database.__main__ import Base
-
+from sqlalchemy.orm import relationship
 
 class User(Base, UserMixin):
     """
@@ -13,10 +13,9 @@ class User(Base, UserMixin):
 
     user_id = Column(Integer, primary_key=True)
     passw = Column(String, nullable=False)
-    user_id = Column(Integer, primary_key=True)
     username = Column(String, nullable=False, unique=True)
     role = Column(String, nullable=False)
-
+    Order = relationship("Order")
 
     def set_password(self, passw):
         self.password_hash = generate_password_hash(passw)
