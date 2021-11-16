@@ -11,7 +11,7 @@ class User(Base, UserMixin):
 
     __tablename__ = "users"
 
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(Text, default=None)
     username = Column(Text, nullable=False, unique=True)
     role = Column(Text, nullable=False)
